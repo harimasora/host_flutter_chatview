@@ -23,6 +23,9 @@ import 'package:flutter/material.dart';
 
 import '../../chatview.dart';
 
+/// Signature for building a custom widget when a URL is detected in the message.
+typedef UrlWidgetBuilder = Widget Function(String message);
+
 class ChatBubble {
   /// Used for giving color of chat bubble.
   final Color? color;
@@ -53,6 +56,10 @@ class ChatBubble {
   /// time only
   final Function(UserMessage message)? onMessageRead;
 
+  /// Optional builder for custom URL widget. If provided, this will be used
+  /// instead of the default LinkPreview when a URL is detected.
+  final UrlWidgetBuilder? urlWidgetBuilder;
+
   const ChatBubble({
     this.color,
     this.borderRadius,
@@ -63,5 +70,6 @@ class ChatBubble {
     this.senderNameTextStyle,
     this.receiptsWidgetConfig,
     this.onMessageRead,
+    this.urlWidgetBuilder,
   });
 }

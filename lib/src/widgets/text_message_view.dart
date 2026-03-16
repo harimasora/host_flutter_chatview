@@ -71,6 +71,8 @@ class TextMessageView extends StatelessWidget {
   /// Allow the user to disable the message wrapper container
   final bool useIndernalMessageWrpper;
 
+  ChatBubble? get chatBubbleConfig => isMessageBySender ? outgoingChatBubbleConfig : inComingChatBubbleConfig;
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -87,10 +89,11 @@ class TextMessageView extends StatelessWidget {
           margin: _margin,
           decoration: _decoration,
           child: textMessage.hasUrl
-              ? LinkPreview(
-                  linkPreviewConfig: _linkPreviewConfig,
-                  text: textMessage,
-                )
+              ? chatBubbleConfig?.urlWidgetBuilder?.call(textMessage) ??
+                  LinkPreview(
+                    linkPreviewConfig: _linkPreviewConfig,
+                    text: textMessage,
+                  )
               : Text(
                   textMessage,
                   textAlign: TextAlign.start,
@@ -114,7 +117,7 @@ class TextMessageView extends StatelessWidget {
 
   EdgeInsetsGeometry? get _padding => !useIndernalMessageWrpper
       ? null
-      : (isMessageBySender ? outgoingChatBubbleConfig?.padding : inComingChatBubbleConfig?.padding) ??
+      : chatBubbleConfig?.padding ??
           const EdgeInsets.symmetric(
             horizontal: 12,
             vertical: 10,
@@ -122,8 +125,7 @@ class TextMessageView extends StatelessWidget {
 
   EdgeInsetsGeometry? get _margin => !useIndernalMessageWrpper
       ? null
-      : (isMessageBySender ? outgoingChatBubbleConfig?.margin : inComingChatBubbleConfig?.margin) ??
-          EdgeInsets.fromLTRB(5, 0, 6, reactions.isNotEmpty ? 15 : 2);
+      : chatBubbleConfig?.margin ?? EdgeInsets.fromLTRB(5, 0, 6, reactions.isNotEmpty ? 15 : 2);
 
   BoxDecoration? get _decoration => !useIndernalMessageWrpper
       ? null
@@ -132,11 +134,9 @@ class TextMessageView extends StatelessWidget {
           borderRadius: _borderRadius(messageContent.text),
         );
 
-  LinkPreviewConfiguration? get _linkPreviewConfig =>
-      isMessageBySender ? outgoingChatBubbleConfig?.linkPreviewConfig : inComingChatBubbleConfig?.linkPreviewConfig;
+  LinkPreviewConfiguration? get _linkPreviewConfig => chatBubbleConfig?.linkPreviewConfig;
 
-  TextStyle? get _textStyle =>
-      isMessageBySender ? outgoingChatBubbleConfig?.textStyle : inComingChatBubbleConfig?.textStyle;
+  TextStyle? get _textStyle => chatBubbleConfig?.textStyle;
 
   BorderRadiusGeometry _borderRadius(String message) => isMessageBySender
       ? outgoingChatBubbleConfig?.borderRadius ??
