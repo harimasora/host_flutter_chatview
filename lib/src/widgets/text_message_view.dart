@@ -89,11 +89,7 @@ class TextMessageView extends StatelessWidget {
           margin: _margin,
           decoration: _decoration,
           child: textMessage.hasUrl
-              ? chatBubbleConfig?.linkPreviewConfig?.urlWidgetBuilder?.call(textMessage) ??
-                  LinkPreview(
-                    linkPreviewConfig: _linkPreviewConfig,
-                    text: textMessage,
-                  )
+              ? _buildUrlWidget(textMessage, textTheme)
               : Text(
                   textMessage,
                   textAlign: TextAlign.start,
@@ -135,6 +131,22 @@ class TextMessageView extends StatelessWidget {
         );
 
   LinkPreviewConfiguration? get _linkPreviewConfig => chatBubbleConfig?.linkPreviewConfig;
+
+  Widget _buildUrlWidget(String textMessage, TextTheme textTheme) {
+    final config = _linkPreviewConfig;
+    final matcher = config?.urlWidgetBuilderMatcher;
+    final builder = config?.urlWidgetBuilder;
+
+    // Use custom builder if provided and matcher returns true (or no matcher)
+    if (builder != null && (matcher == null || matcher(textMessage))) {
+      return builder(textMessage);
+    }
+
+    return LinkPreview(
+      linkPreviewConfig: config,
+      text: textMessage,
+    );
+  }
 
   TextStyle? get _textStyle => chatBubbleConfig?.textStyle;
 

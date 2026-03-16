@@ -25,6 +25,9 @@ import 'package:flutter/material.dart';
 /// Signature for building a custom widget when a URL is detected in the message.
 typedef UrlWidgetBuilder = Widget Function(String message);
 
+/// Signature for deciding when a custom widget should be used for a URL.
+typedef UrlWidgetBuilderMatcher = bool Function(String message);
+
 class LinkPreviewConfiguration {
   /// Used for giving background colour of message with link.
   final Color? backgroundColor;
@@ -60,6 +63,11 @@ class LinkPreviewConfiguration {
   /// instead of the default LinkPreview when a URL is detected.
   final UrlWidgetBuilder? urlWidgetBuilder;
 
+  /// Optional matcher to determine when [urlWidgetBuilder] should be used.
+  /// If provided, [urlWidgetBuilder] will only be called when this returns true.
+  /// If not provided, [urlWidgetBuilder] will be used for all URLs.
+  final UrlWidgetBuilderMatcher? urlWidgetBuilderMatcher;
+
   const LinkPreviewConfiguration({
     this.onUrlDetect,
     this.loadingColor,
@@ -72,5 +80,6 @@ class LinkPreviewConfiguration {
     this.proxyUrl,
     this.errorBody,
     this.urlWidgetBuilder,
+    this.urlWidgetBuilderMatcher,
   });
 }
