@@ -89,7 +89,7 @@ class TextMessageView extends StatelessWidget {
           margin: _margin,
           decoration: _decoration,
           child: textMessage.hasUrl
-              ? chatBubbleConfig?.urlWidgetBuilder?.call(textMessage) ??
+              ? chatBubbleConfig?.linkPreviewConfig?.urlWidgetBuilder?.call(textMessage) ??
                   LinkPreview(
                     linkPreviewConfig: _linkPreviewConfig,
                     text: textMessage,

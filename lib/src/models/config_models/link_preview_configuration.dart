@@ -22,6 +22,9 @@
 import 'package:chatview/src/values/typedefs.dart';
 import 'package:flutter/material.dart';
 
+/// Signature for building a custom widget when a URL is detected in the message.
+typedef UrlWidgetBuilder = Widget Function(String message);
+
 class LinkPreviewConfiguration {
   /// Used for giving background colour of message with link.
   final Color? backgroundColor;
@@ -53,6 +56,10 @@ class LinkPreviewConfiguration {
   /// Displays an error message when the link cannot be parsed for preview.
   final String? errorBody;
 
+  /// Optional builder for custom URL widget. If provided, this will be used
+  /// instead of the default LinkPreview when a URL is detected.
+  final UrlWidgetBuilder? urlWidgetBuilder;
+
   const LinkPreviewConfiguration({
     this.onUrlDetect,
     this.loadingColor,
@@ -64,5 +71,6 @@ class LinkPreviewConfiguration {
     this.padding,
     this.proxyUrl,
     this.errorBody,
+    this.urlWidgetBuilder,
   });
 }
