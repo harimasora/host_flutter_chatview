@@ -69,7 +69,10 @@ extension ValidateString on String {
     return true;
   }
 
-  bool get isUrl => Uri.tryParse(this)?.isAbsolute ?? false;
+  bool get hasUrl {
+    final urlRegExp = RegExp(urlRegExpression, caseSensitive: false);
+    return urlRegExp.hasMatch(this);
+  }
 
   Widget getUserProfilePicture({
     required ChatUser? Function(String) getChatUser,

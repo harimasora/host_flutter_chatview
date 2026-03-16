@@ -30,22 +30,32 @@ import '../utils/constants/constants.dart';
 class LinkPreview extends StatelessWidget {
   const LinkPreview({
     Key? key,
-    required this.url,
+    required this.text,
     this.linkPreviewConfig,
   }) : super(key: key);
 
-  /// Provides url which is passed in message.
-  final String url;
+  /// Provides text which may contain a URL.
+  final String text;
 
   /// Provides configuration of chat bubble appearance when link/URL is passed
   /// in message.
   final LinkPreviewConfiguration? linkPreviewConfig;
 
+  /// Extracts the first URL from the text.
+  String? get _extractedUrl {
+    final urlRegExp = RegExp(urlRegExpression, caseSensitive: false);
+    final match = urlRegExp.firstMatch(text);
+    return match?.group(0);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final url = _extractedUrl;
+    if (url == null) {
+      return Text(text);
+    }
     return Padding(
-      padding: linkPreviewConfig?.padding ??
-          const EdgeInsets.symmetric(horizontal: 6, vertical: verticalPadding),
+      padding: linkPreviewConfig?.padding ?? const EdgeInsets.symmetric(horizontal: 6, vertical: verticalPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -53,7 +63,7 @@ class LinkPreview extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: verticalPadding),
             child: url.isImageUrl
                 ? InkWell(
-                    onTap: _onLinkTap,
+                    onTap: () => _onLinkTap(url),
                     child: Image.network(
                       url,
                       height: 120,
@@ -62,13 +72,11 @@ class LinkPreview extends StatelessWidget {
                     ),
                   )
                 : AnyLinkPreview(
-                    link: url
-                        .replaceAll('HTTPS://', 'https://')
-                        .replaceAll('HTTP://', 'http://'),
+                    link: url.replaceAll('HTTPS://', 'https://').replaceAll('HTTP://', 'http://'),
                     removeElevation: true,
                     errorBody: linkPreviewConfig?.errorBody,
                     proxyUrl: linkPreviewConfig?.proxyUrl,
-                    onTap: _onLinkTap,
+                    onTap: () => _onLinkTap(url),
                     placeholderWidget: SizedBox(
                       height: MediaQuery.of(context).size.height * 0.25,
                       width: double.infinity,
@@ -79,19 +87,17 @@ class LinkPreview extends StatelessWidget {
                         ),
                       ),
                     ),
-                    backgroundColor: linkPreviewConfig?.backgroundColor ??
-                        Colors.grey.shade200,
+                    backgroundColor: linkPreviewConfig?.backgroundColor ?? Colors.grey.shade200,
                     borderRadius: linkPreviewConfig?.borderRadius,
-                    bodyStyle: linkPreviewConfig?.bodyStyle ??
-                        const TextStyle(color: Colors.black),
+                    bodyStyle: linkPreviewConfig?.bodyStyle ?? const TextStyle(color: Colors.black),
                     titleStyle: linkPreviewConfig?.titleStyle,
                   ),
           ),
           const SizedBox(height: verticalPadding),
           InkWell(
-            onTap: _onLinkTap,
+            onTap: () => _onLinkTap(url),
             child: Text(
-              url,
+              text,
               style: linkPreviewConfig?.linkStyle ??
                   const TextStyle(
                     color: Colors.white,
@@ -104,18 +110,16 @@ class LinkPreview extends StatelessWidget {
     );
   }
 
-  void _onLinkTap() {
+  void _onLinkTap(String url) {
     if (linkPreviewConfig?.onUrlDetect != null) {
       linkPreviewConfig?.onUrlDetect!(url);
     } else {
-      _launchURL();
+      _launchURL(url);
     }
   }
 
-  void _launchURL() async {
+  void _launchURL(String url) async {
     final parsedUrl = Uri.parse(url);
-    await canLaunchUrl(parsedUrl)
-        ? await launchUrl(parsedUrl)
-        : throw couldNotLunch;
+    await canLaunchUrl(parsedUrl) ? await launchUrl(parsedUrl) : throw couldNotLunch;
   }
 }
