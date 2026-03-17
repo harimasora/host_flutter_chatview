@@ -32,6 +32,5 @@ class AppBarConfiguration {
   /// The app bar global key to calculate its size
   final GlobalKey? key;
 
-  const AppBarConfiguration(
-      {this.extendListBelowAppbar = false, this.appBarSize, this.key});
+  const AppBarConfiguration({this.extendListBelowAppbar = false, this.appBarSize, this.key});
 }

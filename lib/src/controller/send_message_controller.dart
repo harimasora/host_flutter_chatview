@@ -1,5 +1,4 @@
 import 'package:chatview/chatview.dart';
-import 'package:chatview/src/utils/package_strings.dart';
 import 'package:flutter/material.dart';
 
 class SendMessageController extends ChangeNotifier {
@@ -15,15 +14,14 @@ class SendMessageController extends ChangeNotifier {
   /// controller for the chat textField
   final textEditingController = TextEditingController();
 
-  // Use to focue the chat textField
+  // Use to focus the chat textField
   final focusNode = FocusNode();
 
-  /// The current message that been replyed as ValueListener
+  /// The current message that been replied as ValueListener
   final ValueNotifier<ReplyMessage?> replyMessageListener = ValueNotifier(null);
 
   /// The current attachment files that been waiting to be sent as ValueListener
-  final ValueNotifier<List<AttachmentFile>> waitingForSendAttachmentsListener =
-      ValueNotifier([]);
+  final ValueNotifier<List<AttachmentFile>> waitingForSendAttachmentsListener = ValueNotifier([]);
 
   final ValueNotifier<bool> messagesListSizeUpdated = ValueNotifier(false);
 
@@ -41,12 +39,11 @@ class SendMessageController extends ChangeNotifier {
     required this.onReplyCloseCallback,
   });
 
-  /// The current message that been replyed
+  /// The current message that been replied
   ReplyMessage? get replyMessage => replyMessageListener.value;
 
-  String get replyTo => replyMessage?.sentBy == currentUser?.id
-      ? PackageStrings.you
-      : repliedUser(replyMessage)?.name ?? '';
+  String get replyTo =>
+      replyMessage?.sentBy == currentUser?.id ? PackageStrings.you : repliedUser(replyMessage)?.name ?? '';
 
   void onRecordingComplete(VoiceMessage voiceMsg) {
     onSendTap.call(voiceMsg, replyMessage);
@@ -55,8 +52,7 @@ class SendMessageController extends ChangeNotifier {
 
   void removeImagesFromAttachment(List<ChatImage> images) {
     Set<String> pates = images.map((e) => e.file?.path ?? '').toSet();
-    waitingForSendAttachmentsListener.value.removeWhere(
-        (element) => pates.contains((element as ChatImage).file?.path));
+    waitingForSendAttachmentsListener.value.removeWhere((element) => pates.contains((element as ChatImage).file?.path));
     waitingForSendAttachmentsListener.notifyListeners();
   }
 
@@ -74,10 +70,7 @@ class SendMessageController extends ChangeNotifier {
     debugPrint('Call in send images');
     for (int i = 0; i < images.length; i++) {
       final image = images[i];
-      onSendTap.call(
-          ImageMessage(
-              caption: i == images.length - 1 ? caption : null, image: image),
-          replyMessage);
+      onSendTap.call(ImageMessage(caption: i == images.length - 1 ? caption : null, image: image), replyMessage);
     }
     waitingForSendAttachmentsListener
       ..value = []
@@ -103,11 +96,12 @@ class SendMessageController extends ChangeNotifier {
     // Attach the message to the last image
     else {
       final List<ChatImage> images = [];
-      waitingForSendAttachmentsListener.value.forEach((file) {
+      for (var i = 0; i < waitingForSendAttachmentsListener.value.length; i++) {
+        final file = waitingForSendAttachmentsListener.value[i];
         if (file is ChatImage) {
           images.add(file);
         }
-      });
+      }
       sendImages(
         images,
         caption: textToSend,

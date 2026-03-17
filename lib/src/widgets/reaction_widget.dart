@@ -19,7 +19,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import 'package:chatview/src/extensions/extensions.dart';
 import 'package:chatview/src/utils/measure_size.dart';
 import 'package:chatview/src/widgets/reactions_bottomsheet.dart';
 import 'package:flutter/material.dart';

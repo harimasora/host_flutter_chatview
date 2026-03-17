@@ -20,11 +20,9 @@
  * SOFTWARE.
  */
 import 'package:chatview/chatview.dart';
-import 'package:chatview/src/extensions/extensions.dart';
 import 'package:chatview/src/widgets/voice_message_view.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/constants/constants.dart';
 import 'image_message_view.dart';
 import 'reaction_widget.dart';
 import 'text_message_view.dart';
@@ -75,7 +73,7 @@ class MessageView<Content extends MessageContent> extends StatefulWidget {
   /// Allow user to set some action when user double tap on chat bubble.
   final MessageCallBack? onDoubleTap;
 
-  /// Allow users to pass colour of chat bubble when user taps on replied message.
+  /// Allow users to pass color of chat bubble when user taps on replied message.
   final Color highlightColor;
 
   /// Allow users to turn on/off highlighting chat bubble when user tap on replied message.
@@ -84,14 +82,14 @@ class MessageView<Content extends MessageContent> extends StatefulWidget {
   /// Provides scale of highlighted image when user taps on replied image.
   final double highlightScale;
 
-  /// Allow user to giving customisation different types
+  /// Allow user to giving customization different types
   /// messages.
   final MessageConfiguration messageConfig;
 
   /// Allow user to turn on/off long press tap on chat bubble.
   final bool isLongPressEnable;
 
-  /// Data about the sender to allow differen modes for the ui
+  /// Data about the sender to allow different modes for the ui
   final SenderDataWidgets senderDataWidgets;
 
   final ChatController controller;
@@ -218,7 +216,7 @@ class _MessageViewState extends State<MessageView> with SingleTickerProviderStat
               messageReactionConfig: messageConfig.messageReactionConfig,
               highlightColor: widget.highlightColor,
               highlightMessage: widget.shouldHighlight,
-              useIndernalMessageWrpper: useInternalMessageWrapper,
+              useInternalMessageWrapper: useInternalMessageWrapper,
             ),
       UserMessage(content: ImageMessage content, id: final idMsg, reactions: final reactions) => ImageMessageView(
           idMsg: idMsg,
@@ -266,26 +264,6 @@ class _MessageViewState extends State<MessageView> with SingleTickerProviderStat
           messageData,
           widget.onReplyTap);
     }
-
-    /// ----------------- TO REMOVE ----------------
-    //! Temporarily removed
-    // if (!widget.message.messageType.isText) {
-    //   return const SizedBox();
-    // }
-    // return TextMessageView(
-    //   inComingChatBubbleConfig: widget.inComingChatBubbleConfig,
-    //   outgoingChatBubbleConfig: widget.outgoingChatBubbleConfig,
-    //   isMessageBySender: widget.isMessageBySender,
-    //   message: widget.message,
-    //   chatBubbleMaxWidth: widget.chatBubbleMaxWidth,
-    //   messageReactionConfig: messageConfig?.messageReactionConfig,
-    //   highlightColor: widget.highlightColor,
-    //   highlightMessage: widget.shouldHighlight,
-    //   useIndernalMessageWrpper: useInternalMessageWrapper,
-    // );
-
-    /// -----------------  ----------------
-
     return messageData;
   }
 

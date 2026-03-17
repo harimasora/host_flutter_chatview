@@ -25,7 +25,6 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 import '../../chatview.dart';
-import '../utils/constants/constants.dart';
 
 class ChatViewAppBar extends StatelessWidget {
   const ChatViewAppBar({
@@ -50,7 +49,7 @@ class ChatViewAppBar extends StatelessWidget {
     this.networkImageProgressIndicatorBuilder,
   }) : super(key: key);
 
-  /// Allow user to change colour of appbar.
+  /// Allow user to change color of appbar.
   final Color? backGroundColor;
 
   /// Allow user to change title of appbar.
@@ -68,7 +67,7 @@ class ChatViewAppBar extends StatelessWidget {
   /// Allow user to change text style of user status.
   final TextStyle? userStatusTextStyle;
 
-  /// Allow user to change back arrow colour.
+  /// Allow user to change back arrow color.
   final Color? backArrowColor;
 
   /// Allow user to add actions widget in right side of appbar.
@@ -129,19 +128,6 @@ class ChatViewAppBar extends StatelessWidget {
             Expanded(
               child: Row(
                 children: [
-                  // if (profilePicture != null)
-                  //   Padding(
-                  //     padding: const EdgeInsets.only(right: 8.0),
-                  //     child: ProfileImageWidget(
-                  //       imageUrl: profilePicture,
-                  //       defaultAvatarImage: defaultAvatarImage,
-                  //       assetImageErrorBuilder: assetImageErrorBuilder,
-                  //       networkImageErrorBuilder: networkImageErrorBuilder,
-                  //       imageType: imageType,
-                  //       networkImageProgressIndicatorBuilder:
-                  //           networkImageProgressIndicatorBuilder,
-                  //     ),
-                  //   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

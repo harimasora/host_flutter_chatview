@@ -33,13 +33,13 @@ class MessageReactionConfiguration {
   /// Used for giving padding of reaction on message.
   final EdgeInsetsGeometry? padding;
 
-  /// Used for giving background colour to reaction on message.
+  /// Used for giving background color to reaction on message.
   final Color? backgroundColor;
 
   /// Used for giving border radius of reaction on message.
   final BorderRadiusGeometry? borderRadius;
 
-  /// Used for giving colour of border to reaction on message.
+  /// Used for giving color of border to reaction on message.
   final Color? borderColor;
 
   /// Used for giving border width of reaction on message.

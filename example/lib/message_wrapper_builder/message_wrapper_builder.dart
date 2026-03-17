@@ -1,7 +1,7 @@
 import 'package:chatview/chatview.dart';
-import 'package:example/message_wrpper_builder/widgets/image_message_wrapper.dart';
-import 'package:example/message_wrpper_builder/widgets/text_message_wrapper.dart';
-import 'package:example/message_wrpper_builder/widgets/voice_message_wrapper.dart';
+import 'package:example/message_wrapper_builder/widgets/image_message_wrapper.dart';
+import 'package:example/message_wrapper_builder/widgets/text_message_wrapper.dart';
+import 'package:example/message_wrapper_builder/widgets/voice_message_wrapper.dart';
 import 'package:flutter/material.dart';
 
 Widget messageWrapperBuilder(

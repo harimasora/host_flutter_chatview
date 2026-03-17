@@ -26,11 +26,11 @@ class ConfigurationsInheritedWidget extends InheritedWidget {
   /// Provides configuration for reaction pop up appearance.
   final ReactionPopupConfiguration? reactionPopupConfig;
 
-  /// Provides configuration for customisation of different types
+  /// Provides configuration for customization of different types
   /// messages.
   final MessageConfiguration messageConfig;
 
-  /// Allow user to giving customisation to the app bar behavoiur
+  /// Allow user to giving customization to the app bar behavior
   final AppBarConfiguration appBarConfiguration;
 
   /// Provides configuration of chat bubble's appearance.
@@ -58,10 +58,9 @@ class ConfigurationsInheritedWidget extends InheritedWidget {
   /// Provides a configuration for scroll to bottom button config
   final ScrollToBottomButtonConfig? scrollToBottomButtonConfig;
 
-  static ConfigurationsInheritedWidget? of(BuildContext context) => context
-      .dependOnInheritedWidgetOfExactType<ConfigurationsInheritedWidget>();
+  static ConfigurationsInheritedWidget? of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<ConfigurationsInheritedWidget>();
 
   @override
-  bool updateShouldNotify(covariant ConfigurationsInheritedWidget oldWidget) =>
-      oldWidget != this;
+  bool updateShouldNotify(covariant ConfigurationsInheritedWidget oldWidget) => oldWidget != this;
 }

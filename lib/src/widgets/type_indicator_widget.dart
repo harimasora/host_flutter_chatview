@@ -222,34 +222,6 @@ class _TypingIndicatorState extends State<TypingIndicator> with TickerProviderSt
     required Widget bubble,
   }) {
     return const SizedBox.shrink();
-    // return Positioned(
-    //   left: left,
-    //   bottom: bottom,
-    //   child: AnimatedBuilder(
-    //     animation: animation,
-    //     builder: (context, child) {
-    //       return Transform.scale(
-    //         scale: animation.value,
-    //         alignment: Alignment.centerLeft,
-    //         child: child,
-    //       );
-    //     },
-    //     child: Row(
-    //       children: [
-    //         ProfileCircle(
-    //           bottomPadding: 0,
-    //           imageUrl: profileCircleConfiguration?.profileImageUrl,
-    //           imageType: profileCircleConfiguration?.imageType,
-    //           assetImageErrorBuilder: profileCircleConfiguration?.assetImageErrorBuilder,
-    //           networkImageErrorBuilder: profileCircleConfiguration?.networkImageErrorBuilder,
-    //           defaultAvatarImage: profileCircleConfiguration?.defaultAvatarImage ?? profileImage,
-    //           networkImageProgressIndicatorBuilder: profileCircleConfiguration?.networkImageProgressIndicatorBuilder,
-    //         ),
-    //         bubble,
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 
   Widget _buildStatusBubble() {

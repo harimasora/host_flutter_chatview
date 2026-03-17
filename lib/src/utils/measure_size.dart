@@ -65,7 +65,6 @@ class _MeasureSizeState extends State<MeasureSize> {
 
     /// Below logic checks that end position of widget greater than or less than
     /// to device width
-    widget.onSizeChange(
-        (position.dx + newSize!.width) >= MediaQuery.of(context).size.width);
+    widget.onSizeChange((position.dx + newSize!.width) >= MediaQuery.of(context).size.width);
   }
 }

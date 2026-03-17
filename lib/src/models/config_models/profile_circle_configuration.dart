@@ -22,7 +22,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../chatview.dart';
-import '../../utils/constants/constants.dart';
 
 class ProfileCircleConfiguration {
   /// Used to give padding to profile circle.
@@ -58,8 +57,7 @@ class ProfileCircleConfiguration {
   final NetworkImageErrorBuilder? networkImageErrorBuilder;
 
   /// Progress indicator builder for network image
-  final NetworkImageProgressIndicatorBuilder?
-      networkImageProgressIndicatorBuilder;
+  final NetworkImageProgressIndicatorBuilder? networkImageProgressIndicatorBuilder;
 
   const ProfileCircleConfiguration({
     this.onAvatarTap,

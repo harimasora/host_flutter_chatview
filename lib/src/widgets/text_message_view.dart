@@ -35,7 +35,7 @@ class TextMessageView extends StatelessWidget {
     this.inComingChatBubbleConfig,
     this.outgoingChatBubbleConfig,
     this.messageReactionConfig,
-    this.useIndernalMessageWrpper = true,
+    this.useInternalMessageWrapper = true,
     this.highlightMessage = false,
     this.highlightColor,
     this.reactions = const {},
@@ -69,7 +69,7 @@ class TextMessageView extends StatelessWidget {
   final Color? highlightColor;
 
   /// Allow the user to disable the message wrapper container
-  final bool useIndernalMessageWrpper;
+  final bool useInternalMessageWrapper;
 
   ChatBubble? get chatBubbleConfig => isMessageBySender ? outgoingChatBubbleConfig : inComingChatBubbleConfig;
 
@@ -111,7 +111,7 @@ class TextMessageView extends StatelessWidget {
     );
   }
 
-  EdgeInsetsGeometry? get _padding => !useIndernalMessageWrpper
+  EdgeInsetsGeometry? get _padding => !useInternalMessageWrapper
       ? null
       : chatBubbleConfig?.padding ??
           const EdgeInsets.symmetric(
@@ -119,11 +119,11 @@ class TextMessageView extends StatelessWidget {
             vertical: 10,
           );
 
-  EdgeInsetsGeometry? get _margin => !useIndernalMessageWrpper
+  EdgeInsetsGeometry? get _margin => !useInternalMessageWrapper
       ? null
       : chatBubbleConfig?.margin ?? EdgeInsets.fromLTRB(5, 0, 6, reactions.isNotEmpty ? 15 : 2);
 
-  BoxDecoration? get _decoration => !useIndernalMessageWrpper
+  BoxDecoration? get _decoration => !useInternalMessageWrapper
       ? null
       : BoxDecoration(
           color: highlightMessage ? highlightColor : _color,

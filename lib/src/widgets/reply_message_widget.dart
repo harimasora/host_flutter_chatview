@@ -23,8 +23,6 @@ import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:chatview/chatview.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/constants/constants.dart';
-import '../utils/package_strings.dart';
 import 'vertical_line.dart';
 
 class ReplyMessageWidget extends StatelessWidget {
@@ -39,7 +37,7 @@ class ReplyMessageWidget extends StatelessWidget {
   /// Provides message instance of chat.
   final ReplyMessage message;
 
-  /// Provides configurations related to replied message such as textstyle
+  /// Provides configurations related to replied message such as textStyle
   /// padding, margin etc. Also, this widget is located upon chat bubble.
   final RepliedMessageConfiguration? repliedMessageConfig;
 
@@ -163,34 +161,3 @@ class ReplyMessageWidget extends StatelessWidget {
                   ? BorderRadius.circular(replyBorderRadius1)
                   : BorderRadius.circular(replyBorderRadius2));
 }
-
-//! Preview of image for which the user is replying
-// class _ImagePreview extends StatelessWidget {
-//   const _ImagePreview({
-//     super.key,
-//     required this.repliedMessageConfig,
-//     required this.message,
-//   });
-
-//   final RepliedMessageConfiguration? repliedMessageConfig;
-//   final ReplyMessage<ImagesMessage> message;
-
-//   ChatImage get image => message.content.images.first;
-//   ImageProvider get imageProvider =>
-//       image.file == null ? const NetworkImage('image.url') : FileImage(File(image.file!.path)) as ImageProvider;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: repliedMessageConfig?.repliedImageMessageHeight ?? 100,
-//       width: repliedMessageConfig?.repliedImageMessageWidth ?? 80,
-//       decoration: BoxDecoration(
-//         image: DecorationImage(
-//           image: imageProvider,
-//           fit: BoxFit.fill,
-//         ),
-//         borderRadius: repliedMessageConfig?.borderRadius ?? BorderRadius.circular(14),
-//       ),
-//     );
-//   }
-// }

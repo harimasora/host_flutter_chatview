@@ -1,5 +1,4 @@
 import 'package:chatview/chatview.dart';
-import 'package:chatview/src/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 
 class ChatViewStateWidget extends StatelessWidget {
@@ -30,8 +29,7 @@ class ChatViewStateWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                (chatViewStateWidgetConfig?.title
-                    .getChatViewStateTitle(chatViewState))!,
+                (chatViewStateWidgetConfig?.title.getChatViewStateTitle(chatViewState))!,
                 style: chatViewStateWidgetConfig?.titleTextStyle ??
                     const TextStyle(
                       fontSize: 22,
@@ -46,10 +44,8 @@ class ChatViewStateWidget extends StatelessWidget {
                 CircularProgressIndicator(
                   color: chatViewStateWidgetConfig?.loadingIndicatorColor,
                 ),
-              if (chatViewStateWidgetConfig?.imageWidget != null)
-                (chatViewStateWidgetConfig?.imageWidget)!,
-              if (chatViewStateWidgetConfig?.reloadButton != null)
-                (chatViewStateWidgetConfig?.reloadButton)!,
+              if (chatViewStateWidgetConfig?.imageWidget != null) (chatViewStateWidgetConfig?.imageWidget)!,
+              if (chatViewStateWidgetConfig?.reloadButton != null) (chatViewStateWidgetConfig?.reloadButton)!,
               if (chatViewStateWidgetConfig != null &&
                   (chatViewStateWidgetConfig?.showDefaultReloadButton)! &&
                   chatViewStateWidgetConfig?.reloadButton == null &&
@@ -58,9 +54,7 @@ class ChatViewStateWidget extends StatelessWidget {
                 ElevatedButton(
                   onPressed: onReloadButtonTap,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        chatViewStateWidgetConfig?.reloadButtonColor ??
-                            const Color(0xffEE5366),
+                    backgroundColor: chatViewStateWidgetConfig?.reloadButtonColor ?? const Color(0xffEE5366),
                   ),
                   child: const Text('Reload'),
                 )

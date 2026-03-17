@@ -33,8 +33,7 @@ class ChatController {
   ScrollController scrollController;
 
   /// Allow user to show typing indicator defaults to false.
-  final ValueNotifier<ChatViewState> chatViewStateNotifier =
-      ValueNotifier(ChatViewState.loading);
+  final ValueNotifier<ChatViewState> chatViewStateNotifier = ValueNotifier(ChatViewState.loading);
 
   ChatViewState get chatViewState => chatViewStateNotifier.value;
 
@@ -58,8 +57,7 @@ class ChatController {
   ValueListenable<bool> get typingIndicatorNotifier => _showTypingIndicator;
 
   /// Allow user to add reply suggestions defaults to empty.
-  final ValueNotifier<List<SuggestionItemData>> _replySuggestion =
-      ValueNotifier([]);
+  final ValueNotifier<List<SuggestionItemData>> _replySuggestion = ValueNotifier([]);
 
   /// newSuggestions as [ValueNotifier] for [SuggestionList] widget's [ValueListenableBuilder].
   ///  Use this to listen when suggestion gets added
@@ -67,8 +65,7 @@ class ChatController {
   ///    chatcontroller.newSuggestions.addListener((){});
   ///  ```
   /// For more functionalities see [ValueNotifier].
-  ValueListenable<List<SuggestionItemData>> get newSuggestions =>
-      _replySuggestion;
+  ValueListenable<List<SuggestionItemData>> get newSuggestions => _replySuggestion;
 
   /// Getter for typingIndicator value instead of accessing [_showTypingIndicator.value]
   /// for better accessibility.
@@ -97,8 +94,7 @@ class ChatController {
   });
 
   /// Represents message stream of chat
-  StreamController<Set<MessageBase<MessageContent>>> messageStreamController =
-      StreamController();
+  StreamController<Set<MessageBase<MessageContent>>> messageStreamController = StreamController();
 
   /// Used to dispose ValueNotifiers and Streams.
   void dispose() {
@@ -109,8 +105,7 @@ class ChatController {
   }
 
   /// Set status of a message in message list.
-  void setMessageStatus(
-      UserMessage<MessageContent> message, MessageStatus status) {
+  void setMessageStatus(UserMessage<MessageContent> message, MessageStatus status) {
     initialMessageList.remove(message);
     initialMessageList.add(message.copyWith(status: status));
     if (!messageStreamController.isClosed) {
@@ -134,14 +129,9 @@ class ChatController {
     required String idUser,
     required String? emoji,
   }) {
-    final message = initialMessageList
-        .where((m) => m.id == messageId)
-        .firstOrNull
-        ?.asUserMsg;
+    final message = initialMessageList.where((m) => m.id == messageId).firstOrNull?.asUserMsg;
     if (message == null) return;
-    final reaction = message.reactions
-        .where((r) => r.idMessage == message.id && r.idUser == idUser)
-        .firstOrNull;
+    final reaction = message.reactions.where((r) => r.idMessage == message.id && r.idUser == idUser).firstOrNull;
     // There is no reaction on this message by this user
     if (reaction == null) {
       if (emoji == null) return;
@@ -162,8 +152,7 @@ class ChatController {
           ...initialMessageList.where((m) => m.id != message.id),
           message.copyWith(
             reactions: {
-              ...message.reactions.where(
-                  (r) => r.idUser != idUser && r.idMessage == message.id),
+              ...message.reactions.where((r) => r.idUser != idUser && r.idMessage == message.id),
             },
           ),
         };
@@ -173,8 +162,7 @@ class ChatController {
           ...initialMessageList.where((m) => m.id != message.id),
           message.copyWith(
             reactions: {
-              ...message.reactions.where(
-                  (r) => r.idUser != idUser && r.idMessage == message.id),
+              ...message.reactions.where((r) => r.idUser != idUser && r.idMessage == message.id),
               Reaction(idMessage: message.id, idUser: idUser, reaction: emoji),
             },
           ),
@@ -191,10 +179,7 @@ class ChatController {
     required String messageId,
     required String idUser,
   }) {
-    final message = initialMessageList
-        .where((m) => m.id == messageId)
-        .firstOrNull
-        ?.asUserMsg;
+    final message = initialMessageList.where((m) => m.id == messageId).firstOrNull?.asUserMsg;
     if (message == null) return;
     initialMessageList = {
       ...initialMessageList.where((m) => m.id != message.id),
@@ -226,9 +211,7 @@ class ChatController {
     initialMessageList = {message, ...initialMessageList};
     if (!messageStreamController.isClosed) {
       messageStreamController.sink.add(initialMessageList);
-      setChatViewState = initialMessageList.isEmpty
-          ? ChatViewState.noData
-          : ChatViewState.hasMessages;
+      setChatViewState = initialMessageList.isEmpty ? ChatViewState.noData : ChatViewState.hasMessages;
     }
   }
 
@@ -238,9 +221,7 @@ class ChatController {
     initialMessageList = {...messageList, ...initialMessageList};
     if (!messageStreamController.isClosed) {
       messageStreamController.sink.add(initialMessageList);
-      setChatViewState = initialMessageList.isEmpty
-          ? ChatViewState.noData
-          : ChatViewState.hasMessages;
+      setChatViewState = initialMessageList.isEmpty ? ChatViewState.noData : ChatViewState.hasMessages;
     }
   }
 
@@ -249,14 +230,11 @@ class ChatController {
     initialMessageList = {...messageList};
     if (!messageStreamController.isClosed) {
       messageStreamController.sink.add(initialMessageList);
-      setChatViewState = initialMessageList.isEmpty
-          ? ChatViewState.noData
-          : ChatViewState.hasMessages;
+      setChatViewState = initialMessageList.isEmpty ? ChatViewState.noData : ChatViewState.hasMessages;
     }
   }
 
   /// Function for getting ChatUser object from user id
-  ChatUser getUserFromId(String userId) => userId == currentUser.id
-      ? currentUser
-      : otherUsers.firstWhere((element) => element.id == userId);
+  ChatUser getUserFromId(String userId) =>
+      userId == currentUser.id ? currentUser : otherUsers.firstWhere((element) => element.id == userId);
 }

@@ -23,14 +23,11 @@ import 'dart:async';
 import 'dart:io' show File, Platform;
 
 import 'package:audio_waveforms/audio_waveforms.dart';
-import 'package:chatview/src/utils/constants/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../chatview.dart';
-import '../utils/debounce.dart';
-import '../utils/package_strings.dart';
 
 class ChatUITextField extends StatefulWidget {
   const ChatUITextField({
@@ -62,7 +59,7 @@ class ChatUITextField extends StatefulWidget {
   /// Provides callback when user select images from camera/gallery.
   final ImagesCallBack onImageSelected;
 
-  /// Used to calculate the size of thes widget
+  /// Used to calculate the size of the widget
   final GlobalKey textFieldKey;
 
   @override
@@ -338,7 +335,7 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
       }
       widget.onImageSelected([ChatImage.fromPicker(file: image)]);
     } catch (e) {
-      print(e.toString());
+      return;
     }
   }
 
@@ -371,7 +368,7 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
       }
       widget.onImageSelected(updatedImages);
     } catch (e) {
-      print(e.toString());
+      return;
     }
   }
 }

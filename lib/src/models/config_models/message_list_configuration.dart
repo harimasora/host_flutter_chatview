@@ -35,7 +35,7 @@ class ChatBackgroundConfiguration {
   /// Headers to pass for network image
   final Map<String, String>? networkImageHeaders;
 
-  /// wheter the [backgroundImage] is local or from network
+  /// Whether the [backgroundImage] is local or from network
   final bool isBackgroundLocal;
 
   /// Provides padding of chat view.
@@ -63,7 +63,7 @@ class ChatBackgroundConfiguration {
   /// message.
   final TextStyle? messageTimeTextStyle;
 
-  /// Used to give colour of message's time while user swipe to see time of
+  /// Used to give color of message's time while user swipe to see time of
   /// message.
   final Color? messageTimeIconColor;
 
@@ -113,13 +113,13 @@ class DefaultGroupSeparatorConfiguration {
   /// e.g. May 21, 2024
   final String chatSeparatorDatePattern;
 
-  /// Allow to fully custom the seperator widget
-  final Widget Function(String)? speratorBuilder;
+  /// Allow to fully custom the separator widget
+  final Widget Function(String)? separatorBuilder;
 
   const DefaultGroupSeparatorConfiguration({
     this.padding,
     this.textStyle,
-    this.speratorBuilder,
+    this.separatorBuilder,
     this.chatSeparatorDatePattern = defaultChatSeparatorDatePattern,
   });
 }

@@ -1,5 +1,5 @@
 import 'package:chatview/chatview.dart';
-import 'package:example/message_wrpper_builder/widgets/sender_data_widget.dart';
+import 'package:example/message_wrapper_builder/widgets/sender_data_widget.dart';
 import 'package:flutter/material.dart';
 
 class TextMessageWrapper extends StatelessWidget {

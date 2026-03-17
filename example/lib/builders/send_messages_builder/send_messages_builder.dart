@@ -1,7 +1,7 @@
 import 'package:chatview/chatview.dart';
 import 'package:flutter/material.dart';
 
-import 'send_mssages_widget/send_mssages_widget.dart';
+import 'send_messages_widget/send_messages_widget.dart';
 
 Widget sendMessageBuilder(
   SendMessageController sendMessageController,

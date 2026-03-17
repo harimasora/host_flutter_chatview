@@ -7,8 +7,7 @@ class Debouncer {
 
   Debouncer(this.duration);
 
-  void run(VoidCallback callbackAfterTimeLapsed,
-      VoidCallback callbackBeforeTimeLapsed) {
+  void run(VoidCallback callbackAfterTimeLapsed, VoidCallback callbackBeforeTimeLapsed) {
     if (_debounce?.isActive ?? false) {
       callbackBeforeTimeLapsed();
       _debounce?.cancel();

@@ -22,11 +22,6 @@
 import 'dart:io' if (kIsWeb) 'dart:html';
 
 import 'package:chatview/chatview.dart';
-import 'package:chatview/src/extensions/extensions.dart';
-import 'package:chatview/src/utils/package_strings.dart';
-import 'package:chatview/src/widgets/chatui_textfield.dart';
-import 'package:chatview/src/widgets/reply_message_view.dart';
-import 'package:chatview/src/widgets/scroll_to_bottom_button.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
@@ -43,7 +38,7 @@ class MySendMessageWidgetState extends State<MySendMessageWidget> {
   final GlobalKey textFieldKey = GlobalKey();
   double height = 0.0;
   Widget scrollToButton() {
-    if (chatViewIW?.featureActiveConfig.enableScrollToBottomButton ?? true)
+    if (chatViewIW?.featureActiveConfig.enableScrollToBottomButton ?? true) {
       return const Align(
         alignment: Alignment.bottomCenter,
         child: Padding(
@@ -51,6 +46,7 @@ class MySendMessageWidgetState extends State<MySendMessageWidget> {
           child: ScrollToBottomButton(),
         ),
       );
+    }
     return const SizedBox.shrink();
   }
 
@@ -62,22 +58,15 @@ class MySendMessageWidgetState extends State<MySendMessageWidget> {
 
   void updateUi() {
     _updateLineCount();
-    // setState(() {});
   }
 
   void _updateLineCount() {
     final renderObj = (textFieldKey.currentContext?.findRenderObject() as RenderBox?);
     if (renderObj == null) {
-      print("Null ignore");
       return;
     }
 
-    // final heightPerLine = textPainter.preferredLineHeight;
-    // final totalHeight = textPainter.size.height;
-    // final lineCount = (totalHeight / heightPerLine).ceil();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      print("amount -> ${renderObj.size.height}");
-      //
       final newHight = renderObj.size.height;
       if (height == newHight) return;
       height = newHight;
@@ -88,10 +77,6 @@ class MySendMessageWidgetState extends State<MySendMessageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // final lines = widget.sendMessageController.textEditingController.text;
-    // final _newlineCount = '\n'.allMatches(lines).length;
-    // print("amount -> $_newlineCount");
-    print(":Cange");
     return Align(
       alignment: Alignment.bottomCenter,
       child: Column(
@@ -103,7 +88,7 @@ class MySendMessageWidgetState extends State<MySendMessageWidget> {
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(12),
               ),
-              color: Colors.white.withOpacity(.8),
+              color: Colors.white.withValues(alpha: 0.8),
             ),
             key: chatViewIW?.chatTextFieldViewKey,
             padding: EdgeInsets.fromLTRB(
@@ -113,7 +98,6 @@ class MySendMessageWidgetState extends State<MySendMessageWidget> {
               _bottomPadding,
             ),
             child: Column(
-              // alignment: Alignment.bottomCenter,
               children: [
                 ValueListenableBuilder<ReplyMessage?>(
                   builder: (_, state, child) {
@@ -129,8 +113,6 @@ class MySendMessageWidgetState extends State<MySendMessageWidget> {
                         ),
                         margin: const EdgeInsets.only(
                           bottom: 10,
-                          // right: 0.4,
-                          // left: 0.4,
                         ),
                         padding: const EdgeInsets.fromLTRB(
                           leftPadding,
@@ -181,10 +163,6 @@ class MySendMessageWidgetState extends State<MySendMessageWidget> {
                               ),
                               ReplyMessageView(
                                 message: state,
-                                // customMessageReplyViewBuilder: widget
-                                //     .messageConfig
-                                //     ?.customMessageReplyViewBuilder,
-                                // sendMessageConfig: widget.sendMessageConfig,
                               ),
                             ],
                           ),
@@ -210,7 +188,6 @@ class MySendMessageWidgetState extends State<MySendMessageWidget> {
                     compositionThresholdTime: const Duration(seconds: 1),
                     textStyle: const TextStyle(color: Colors.black),
                   )),
-                  //widget.sendMessageConfig,
                   onRecordingComplete: widget.sendMessageController.onRecordingComplete,
                   onImageSelected: widget.sendMessageController.onImageSelected,
                 )

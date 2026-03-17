@@ -28,11 +28,18 @@ export 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 
 export 'src/controller/chat_controller.dart';
 export 'src/controller/send_message_controller.dart';
+export 'src/extensions/extensions.dart';
 export 'src/inherited_widgets/configurations_inherited_widgets.dart';
 export 'src/models/config_models/receipts_widget_config.dart';
 export 'src/models/models.dart';
+export 'src/utils/constants/constants.dart';
+export 'src/utils/debounce.dart';
+export 'src/utils/package_strings.dart';
 export 'src/values/enumeration.dart';
 export 'src/values/typedefs.dart';
 export 'src/widgets/chat_view.dart';
 export 'src/widgets/chat_view_appbar.dart';
 export 'src/widgets/chat_view_inherited_widget.dart';
+export 'src/widgets/chatui_textfield.dart';
+export 'src/widgets/reply_message_view.dart';
+export 'src/widgets/scroll_to_bottom_button.dart';

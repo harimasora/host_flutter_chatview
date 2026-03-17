@@ -76,24 +76,25 @@ class RepliedMessageConfiguration {
   final Color? micIconColor;
 
   /// whether to display the replay or not  (allow the user to customize the reply)
-  final bool? displyeReply;
+  final bool? displayReply;
 
-  const RepliedMessageConfiguration(
-      {this.verticalBarColor,
-      this.backgroundColor,
-      this.textStyle,
-      this.replyTitleTextStyle,
-      this.margin,
-      this.padding,
-      this.maxWidth,
-      this.borderRadius,
-      this.verticalBarWidth,
-      this.repliedImageMessageHeight,
-      this.repliedImageMessageWidth,
-      this.repliedImageMessageBorderRadius,
-      this.repliedMessageWidgetBuilder,
-      this.opacity,
-      this.repliedMsgAutoScrollConfig = const RepliedMsgAutoScrollConfig(),
-      this.micIconColor,
-      this.displyeReply});
+  const RepliedMessageConfiguration({
+    this.verticalBarColor,
+    this.backgroundColor,
+    this.textStyle,
+    this.replyTitleTextStyle,
+    this.margin,
+    this.padding,
+    this.maxWidth,
+    this.borderRadius,
+    this.verticalBarWidth,
+    this.repliedImageMessageHeight,
+    this.repliedImageMessageWidth,
+    this.repliedImageMessageBorderRadius,
+    this.repliedMessageWidgetBuilder,
+    this.opacity,
+    this.repliedMsgAutoScrollConfig = const RepliedMsgAutoScrollConfig(),
+    this.micIconColor,
+    this.displayReply,
+  });
 }

@@ -132,17 +132,15 @@ class FullScreenImageView extends StatelessWidget {
                     child: SafeArea(
                       bottom: false,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(999),
                           child: BackdropFilter(
                             filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
                             child: Container(
                               padding: const EdgeInsets.all(3),
-                              decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(.5),
-                                  shape: BoxShape.circle),
+                              decoration:
+                                  BoxDecoration(color: Colors.white.withValues(alpha: 0.5), shape: BoxShape.circle),
                               child: const Icon(Icons.close_rounded),
                             ),
                           ),
@@ -211,8 +209,7 @@ class _ImageShell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment:
-          isMessageBySender ? MainAxisAlignment.end : MainAxisAlignment.start,
+      mainAxisAlignment: isMessageBySender ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
         Stack(
           children: [
@@ -222,9 +219,7 @@ class _ImageShell extends StatelessWidget {
                 tag: idImage,
                 child: Transform.scale(
                   scale: highlightImage ? highlightScale : 1.0,
-                  alignment: isMessageBySender
-                      ? Alignment.centerRight
-                      : Alignment.centerLeft,
+                  alignment: isMessageBySender ? Alignment.centerRight : Alignment.centerLeft,
                   child: Container(
                     padding: imageMessageConfig.padding ?? EdgeInsets.zero,
                     margin: imageMessageConfig.margin ??
@@ -237,8 +232,7 @@ class _ImageShell extends StatelessWidget {
                     height: imageMessageConfig.height ?? 200,
                     width: imageMessageConfig.width ?? 150,
                     child: ClipRRect(
-                      borderRadius: imageMessageConfig.borderRadius ??
-                          BorderRadius.circular(14),
+                      borderRadius: imageMessageConfig.borderRadius ?? BorderRadius.circular(14),
                       child: Image(
                         image: image,
                         fit: BoxFit.cover,
@@ -247,8 +241,7 @@ class _ImageShell extends StatelessWidget {
                           return Center(
                             child: CircularProgressIndicator(
                               value: loadingProgress.expectedTotalBytes != null
-                                  ? loadingProgress.cumulativeBytesLoaded /
-                                      loadingProgress.expectedTotalBytes!
+                                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
                                   : null,
                             ),
                           );

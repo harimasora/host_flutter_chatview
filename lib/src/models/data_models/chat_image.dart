@@ -68,25 +68,15 @@ class ChatImage extends AttachmentFile {
   }
 
   @override
-  String toString() =>
-      'ChatImage(id: $id, name: $name, file: $file, ext: $ext, mimeType: $mimeType)';
+  String toString() => 'ChatImage(id: $id, name: $name, file: $file, ext: $ext, mimeType: $mimeType)';
 
   @override
   bool operator ==(covariant ChatImage other) {
     if (identical(this, other)) return true;
 
-    return other.id == id &&
-        other.name == name &&
-        other.file == file &&
-        other.ext == ext &&
-        other.mimeType == mimeType;
+    return other.id == id && other.name == name && other.file == file && other.ext == ext && other.mimeType == mimeType;
   }
 
   @override
-  int get hashCode =>
-      id.hashCode ^
-      name.hashCode ^
-      file.hashCode ^
-      ext.hashCode ^
-      mimeType.hashCode;
+  int get hashCode => id.hashCode ^ name.hashCode ^ file.hashCode ^ ext.hashCode ^ mimeType.hashCode;
 }

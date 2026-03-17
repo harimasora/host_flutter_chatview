@@ -54,7 +54,7 @@ class _SwipeToReplyState extends State<SwipeToReply> {
   double trackPaddingValue = 0;
   double initialTouchPoint = 0;
   bool isCallBackTriggered = false;
-  bool startFeddback = false;
+  bool startFeedback = false;
 
   late bool isMessageByCurrentUser = widget.isMessageByCurrentUser;
 
@@ -67,8 +67,7 @@ class _SwipeToReplyState extends State<SwipeToReply> {
     return !(chatViewIW?.featureActiveConfig.enableSwipeToReply ?? true)
         ? widget.child
         : GestureDetector(
-            onHorizontalDragStart: (details) =>
-                initialTouchPoint = details.globalPosition.dx,
+            onHorizontalDragStart: (details) => initialTouchPoint = details.globalPosition.dx,
             onHorizontalDragEnd: (details) => setState(
               () {
                 _onHorizontalDragEnd(details);
@@ -78,9 +77,7 @@ class _SwipeToReplyState extends State<SwipeToReply> {
             ),
             onHorizontalDragUpdate: _onHorizontalDragUpdate,
             child: Stack(
-              alignment: isMessageByCurrentUser
-                  ? Alignment.centerRight
-                  : Alignment.centerLeft,
+              alignment: isMessageByCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
               fit: StackFit.passthrough,
               children: [
                 Padding(
@@ -88,9 +85,7 @@ class _SwipeToReplyState extends State<SwipeToReply> {
                   child: ReplyIcon(
                     replyIconSize: replyIconSize,
                     animationValue:
-                        paddingValue > (replyIconSize + replyPadding)
-                            ? (paddingValue) / (paddingLimit)
-                            : 0.0,
+                        paddingValue > (replyIconSize + replyPadding) ? (paddingValue) / (paddingLimit) : 0.0,
                   ),
                 ),
                 Padding(
@@ -107,13 +102,13 @@ class _SwipeToReplyState extends State<SwipeToReply> {
 
   void _onHorizontalDragUpdate(DragUpdateDetails details) {
     // Apply feedback
-    if (paddingValue >= paddingLimit && !startFeddback) {
-      startFeddback = true;
+    if (paddingValue >= paddingLimit && !startFeedback) {
+      startFeedback = true;
       HapticFeedback.lightImpact();
     }
     // Release the feedback key
-    if (startFeddback && paddingValue < (paddingLimit - 10)) {
-      startFeddback = false;
+    if (startFeedback && paddingValue < (paddingLimit - 10)) {
+      startFeedback = false;
     }
 
     // Handle other logic
@@ -126,16 +121,6 @@ class _SwipeToReplyState extends State<SwipeToReply> {
         paddingValue = swipeDistance;
       });
     }
-    // else if (paddingValue >= paddingLimit) {
-    //   // if (!isCallBackTriggered) {
-    //   //   widget.onSwipe();
-    //   //   isCallBackTriggered = true;
-    //   // }
-    // } else {
-    //   setState(() {
-    //     paddingValue = 0;
-    //   });
-    // }
     trackPaddingValue = swipeDistance;
   }
 

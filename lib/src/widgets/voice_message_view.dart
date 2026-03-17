@@ -141,12 +141,6 @@ class _VoiceMessageViewState extends State<VoiceMessageView> {
             ],
           ),
         ),
-        // if (widget.message.reaction.reactions.isNotEmpty)
-        //   ReactionWidget(
-        //     isMessageBySender: widget.isMessageBySender,
-        //     reaction: widget.message.reaction,
-        //     messageReactionConfig: widget.messageReactionConfig,
-        //   ),
       ],
     );
   }

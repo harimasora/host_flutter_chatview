@@ -40,19 +40,16 @@ class ChatGroupHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (groupSeparatorConfig?.speratorBuilder != null) {
-      return groupSeparatorConfig!.speratorBuilder!(day.getDay(
-        groupSeparatorConfig?.chatSeparatorDatePattern ??
-            defaultChatSeparatorDatePattern,
+    if (groupSeparatorConfig?.separatorBuilder != null) {
+      return groupSeparatorConfig!.separatorBuilder!(day.getDay(
+        groupSeparatorConfig?.chatSeparatorDatePattern ?? defaultChatSeparatorDatePattern,
       ));
     }
     return Padding(
-      padding: groupSeparatorConfig?.padding ??
-          const EdgeInsets.symmetric(vertical: 12),
+      padding: groupSeparatorConfig?.padding ?? const EdgeInsets.symmetric(vertical: 12),
       child: Text(
         day.getDay(
-          groupSeparatorConfig?.chatSeparatorDatePattern ??
-              defaultChatSeparatorDatePattern,
+          groupSeparatorConfig?.chatSeparatorDatePattern ?? defaultChatSeparatorDatePattern,
         ),
         textAlign: TextAlign.center,
         style: groupSeparatorConfig?.textStyle ?? const TextStyle(fontSize: 17),

@@ -25,9 +25,7 @@ import 'package:chatview/src/widgets/suggestions/suggestions_config_inherited_wi
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../utils/constants/constants.dart';
 import '../utils/emoji_parser.dart';
-import '../utils/package_strings.dart';
 
 /// Extension for DateTime to get specific formats of dates and time.
 extension TimeDifference on DateTime {

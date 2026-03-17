@@ -99,7 +99,7 @@ class UserMessage<Content extends MessageContent> extends MessageBase<Content> {
         content: content,
       );
 
-  UserMessage<Content> copyWith<MessageContent>({
+  UserMessage<Content> copyWith({
     String? id,
     GlobalKey? key,
     String? sentBy,
@@ -186,15 +186,12 @@ class UserMessage<Content extends MessageContent> extends MessageBase<Content> {
 }
 
 class SystemMessage extends MessageBase<TextMessage> {
-  @override
-  final GlobalKey key;
-
   SystemMessage({
     required super.id,
     required super.idGroup,
     required super.sentAt,
     required super.content,
-  }) : key = GlobalKey();
+  });
 
   @override
   Map<String, dynamic> toJson() => throw UnimplementedError();

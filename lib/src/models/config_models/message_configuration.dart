@@ -43,10 +43,10 @@ class MessageConfiguration {
   /// To customize reply view for custom message type
   final CustomMessageReplyViewBuilder? customMessageReplyViewBuilder;
 
-  /// To customise the containder of the message
+  /// To customize the container of the message
   final CustomMessageWrapperBuilder? customMessageWrapperBuilder;
 
-  /// To customise the containder of the System messages
+  /// To customize the container of the System messages
   final CustomSystemMessageWrapperBuilder? customSystemMessageWrapper;
 
   /// Cache extent for the messages

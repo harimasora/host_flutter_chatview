@@ -13,8 +13,7 @@ class SuggestionList extends StatefulWidget {
   State<SuggestionList> createState() => _SuggestionListState();
 }
 
-class _SuggestionListState extends State<SuggestionList>
-    with SingleTickerProviderStateMixin {
+class _SuggestionListState extends State<SuggestionList> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   List<SuggestionItemData> suggestions = [];
@@ -37,8 +36,7 @@ class _SuggestionListState extends State<SuggestionList>
   void updateSuggestionsOnAnimation() {
     if (isSuggestionListEmpty && _controller.value == 0) {
       suggestions = [];
-    } else if (chatViewIW?.chatController.newSuggestions.value.isNotEmpty ??
-        false) {
+    } else if (chatViewIW?.chatController.newSuggestions.value.isNotEmpty ?? false) {
       suggestions = chatViewIW?.chatController.newSuggestions.value ?? [];
     }
   }
@@ -61,15 +59,11 @@ class _SuggestionListState extends State<SuggestionList>
   @override
   Widget build(BuildContext context) {
     final suggestionsItemConfig = suggestionsConfig?.itemConfig;
-    final suggestionsListConfig =
-        suggestionsConfig?.listConfig ?? const SuggestionListConfig();
+    final suggestionsListConfig = suggestionsConfig?.listConfig ?? const SuggestionListConfig();
     return Container(
       decoration: suggestionsListConfig.decoration,
-      padding:
-          suggestionsListConfig.padding ?? const EdgeInsets.only(left: 8.0),
+      padding: suggestionsListConfig.padding ?? const EdgeInsets.only(left: 8.0),
       margin: suggestionsListConfig.margin,
-      // TODO: Switch to SizeTransition once support for
-      // `fixedCrossAxisSizeFactor` is provided.
       child: ClipRect(
         child: AnimatedBuilder(
           animation: _controller,
@@ -86,15 +80,11 @@ class _SuggestionListState extends State<SuggestionList>
                     suggestions.length,
                     (index) {
                       final suggestion = suggestions[index];
-                      return suggestion.config?.customItemBuilder
-                              ?.call(index, suggestion) ??
-                          suggestionsItemConfig?.customItemBuilder
-                              ?.call(index, suggestion) ??
+                      return suggestion.config?.customItemBuilder?.call(index, suggestion) ??
+                          suggestionsItemConfig?.customItemBuilder?.call(index, suggestion) ??
                           Padding(
                             padding: EdgeInsets.only(
-                              right: index == suggestions.length
-                                  ? 0
-                                  : suggestionsListConfig.itemSeparatorWidth,
+                              right: index == suggestions.length ? 0 : suggestionsListConfig.itemSeparatorWidth,
                             ),
                             child: SuggestionItem(
                               suggestionItemData: suggestion,

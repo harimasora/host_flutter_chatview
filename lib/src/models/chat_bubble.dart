@@ -45,8 +45,8 @@ class ChatBubble {
   /// Used to give text style of message sender name.
   final TextStyle? senderNameTextStyle;
 
-  /// Used to provide builders for last seen message reciept,
-  /// at latest outgoing messsage.
+  /// Used to provide builders for last seen message receipt,
+  /// at latest outgoing message.
   final ReceiptsWidgetConfig? receiptsWidgetConfig;
 
   /// Callback when a message has been displayed for the first
